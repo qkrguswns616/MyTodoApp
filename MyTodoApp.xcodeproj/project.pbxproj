@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		521E5D1325271BA900196E15 /* TableSceneController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521E5D1225271BA900196E15 /* TableSceneController.swift */; };
+		521E5D202527428C00196E15 /* TaskCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521E5D1F2527428C00196E15 /* TaskCell.swift */; };
 		52C600E02522224600937F76 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C600DF2522224600937F76 /* AppDelegate.swift */; };
 		52C600E22522224600937F76 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C600E12522224600937F76 /* SceneDelegate.swift */; };
 		52C600E42522224600937F76 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C600E32522224600937F76 /* ViewController.swift */; };
@@ -35,6 +37,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		521E5D1225271BA900196E15 /* TableSceneController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableSceneController.swift; sourceTree = "<group>"; };
+		521E5D1F2527428C00196E15 /* TaskCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskCell.swift; sourceTree = "<group>"; };
 		52C600DC2522224600937F76 /* MyTodoApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyTodoApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		52C600DF2522224600937F76 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		52C600E12522224600937F76 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -106,6 +110,8 @@
 				52C600E82522224600937F76 /* Assets.xcassets */,
 				52C600EA2522224600937F76 /* LaunchScreen.storyboard */,
 				52C600ED2522224600937F76 /* Info.plist */,
+				521E5D1225271BA900196E15 /* TableSceneController.swift */,
+				521E5D1F2527428C00196E15 /* TaskCell.swift */,
 			);
 			path = MyTodoApp;
 			sourceTree = "<group>";
@@ -261,6 +267,8 @@
 				52C600E42522224600937F76 /* ViewController.swift in Sources */,
 				52C600E02522224600937F76 /* AppDelegate.swift in Sources */,
 				52C600E22522224600937F76 /* SceneDelegate.swift in Sources */,
+				521E5D1325271BA900196E15 /* TableSceneController.swift in Sources */,
+				521E5D202527428C00196E15 /* TaskCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

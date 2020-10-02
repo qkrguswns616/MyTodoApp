@@ -12,11 +12,13 @@ class ViewController: UIViewController {
     var date = Date()
     let dateFormatter = DateFormatter()
 
-    @IBOutlet var dateLebel: UILabel!
-    
+    //Date var
+    @IBOutlet var dateLabel: UILabel!
+
     @IBAction func settingButton(_ sender: Any) {
-        self.dateLebel.text = "TEST"
+        self.dateLabel.text = "TEST";
     }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -25,7 +27,8 @@ class ViewController: UIViewController {
         dateFormatter.locale = Locale(identifier: "ko_KR")
         
         
-        self.dateLebel.text = dateFormatter.string(from: date)
+        
+        self.dateLabel.text = dateFormatter.string(from: date)
         // Do any additional setup after loading the view.
     }
 
