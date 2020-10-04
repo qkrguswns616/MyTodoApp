@@ -11,7 +11,9 @@ import UIKit
 var taskItems = ["test1","test2","test3"]
 var taskDates = ["10.1","10.1","10.2"]
 var taskColor = ["red","orange","yellow"]
+var taskChecks = ["0","0","0"]
 var colors = ["red", "orange", "yellow", "green", "blue", "navy", "purple", "white"]
+
 var selectedColor = "white"
 
 class TableSceneController: UIViewController, UITextFieldDelegate {
@@ -20,7 +22,20 @@ class TableSceneController: UIViewController, UITextFieldDelegate {
     var date = Date()
     let dateFormatter = DateFormatter()
     let taskDateFormatter = DateFormatter()
-
+    let toolbar = UIToolbar()
+    
+    var selectedButton = UIBarButtonItem()
+    var redButton = UIBarButtonItem()
+    var orangeButton = UIBarButtonItem()
+    var yellowButton = UIBarButtonItem()
+    var greenButton = UIBarButtonItem()
+    var blueButton = UIBarButtonItem()
+    var navyButton = UIBarButtonItem()
+    var purpleButton = UIBarButtonItem()
+    var noneButton = UIBarButtonItem()
+    var flexSpace = UIBarButtonItem()
+    var selectedIndex :Int = -1
+    
     //date var
     @IBOutlet var dateLabel: UILabel!
 
@@ -44,6 +59,9 @@ class TableSceneController: UIViewController, UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField){
         self.taskField.becomeFirstResponder()
         selectedColor = "white"
+        selectedButton = setBarButton(colorName: "none", actionName: "")
+        toolbar.setItems([redButton, orangeButton, yellowButton, greenButton, blueButton, navyButton, purpleButton, noneButton, flexSpace, selectedButton], animated: false)
+       
         NSLog("taskFieldDidEndEditing Func : \((taskField.text) ?? "Empty")")
     }
 
@@ -61,6 +79,7 @@ class TableSceneController: UIViewController, UITextFieldDelegate {
             
             taskItems.append(newTask)
             taskColor.append(selectedColor)
+            taskChecks.append("0")
 
             let indexPath = IndexPath(row: taskItems.count-1, section:0)
             self.taskTable.insertRows(at: [indexPath], with: UITableView.RowAnimation.none)
@@ -86,24 +105,65 @@ class TableSceneController: UIViewController, UITextFieldDelegate {
             switch button.tag {
                 case 0: // Change the color to blue.
                     selectedColor = "white"
+                    selectedButton = setBarButton(colorName: "none", actionName: "")
+                    toolbar.setItems([redButton, orangeButton, yellowButton, greenButton, blueButton, navyButton, purpleButton, noneButton, flexSpace, selectedButton], animated: false)
+                    
+                    taskField.inputAccessoryView = toolbar
                 case 1: // Change the color to red.
                     selectedColor = "red"
+                    selectedButton = setBarButton(colorName: "red", actionName: "")
+                    toolbar.setItems([redButton, orangeButton, yellowButton, greenButton, blueButton, navyButton, purpleButton, noneButton, flexSpace, selectedButton], animated: false)
+                    
+                    taskField.inputAccessoryView = toolbar
                 case 2: // Change the color to blue.
                     selectedColor = "orange"
+                    selectedButton = setBarButton(colorName: "orange", actionName: "")
+                    toolbar.setItems([redButton, orangeButton, yellowButton, greenButton, blueButton, navyButton, purpleButton, noneButton, flexSpace, selectedButton], animated: false)
+                    
+                    taskField.inputAccessoryView = toolbar
                 case 3: // Change the color to red.
                     selectedColor = "yellow"
+                    selectedButton = setBarButton(colorName: "yellow", actionName: "")
+                    toolbar.setItems([redButton, orangeButton, yellowButton, greenButton, blueButton, navyButton, purpleButton, noneButton, flexSpace, selectedButton], animated: false)
+                    
+                    taskField.inputAccessoryView = toolbar
                 case 4: // Change the color to blue.
                     selectedColor = "green"
+                    selectedButton = setBarButton(colorName: "green", actionName: "")
+                    toolbar.setItems([redButton, orangeButton, yellowButton, greenButton, blueButton, navyButton, purpleButton, noneButton, flexSpace, selectedButton], animated: false)
+                    
+                    taskField.inputAccessoryView = toolbar
                 case 5: // Change the color to red.
                     selectedColor = "blue"
+                    selectedButton = setBarButton(colorName: "blue", actionName: "")
+                    toolbar.setItems([redButton, orangeButton, yellowButton, greenButton, blueButton, navyButton, purpleButton, noneButton, flexSpace, selectedButton], animated: false)
+                    
+                    taskField.inputAccessoryView = toolbar
                 case 6: // Change the color to blue.
                     selectedColor = "navy"
+                    selectedButton = setBarButton(colorName: "navy", actionName: "")
+                    toolbar.setItems([redButton, orangeButton, yellowButton, greenButton, blueButton, navyButton, purpleButton, noneButton, flexSpace, selectedButton], animated: false)
+                    
+                    taskField.inputAccessoryView = toolbar
                 case 7: // Change the color to red.
                     selectedColor = "purple"
+                    selectedButton = setBarButton(colorName: "purple", actionName: "")
+                    toolbar.setItems([redButton, orangeButton, yellowButton, greenButton, blueButton, navyButton, purpleButton, noneButton, flexSpace, selectedButton], animated: false)
+                    
+                    taskField.inputAccessoryView = toolbar
                 default:
                     selectedColor = "white"
                 
             }
+        }
+    }
+    
+    func setBarButton(colorName : String, actionName : String) -> UIBarButtonItem{
+        if actionName == "changeColor" {
+            return UIBarButtonItem(image: UIImage(named: colorName)?.resizeImage(size: CGSize(width: 26, height: 26)).withRenderingMode(.alwaysOriginal), style: UIBarButtonItem.Style.plain, target: nil, action: #selector(changeColor))
+        }
+        else{
+            return UIBarButtonItem(image: UIImage(named: colorName)?.resizeImage(size: CGSize(width: 26, height: 26)).withRenderingMode(.alwaysOriginal), style: UIBarButtonItem.Style.plain, target: nil, action: nil)
         }
     }
     
@@ -124,27 +184,29 @@ class TableSceneController: UIViewController, UITextFieldDelegate {
         
         
         // ToolBar
-        let toolbar = UIToolbar()
         toolbar.sizeToFit()
-                
-        let redButton = UIBarButtonItem(image: UIImage(named: "red")?.resizeImage(size: CGSize(width: 26, height: 26)).withRenderingMode(.alwaysOriginal), style: UIBarButtonItem.Style.plain, target: nil, action: #selector(changeColor))
+            
+        redButton = setBarButton(colorName: "red", actionName: "changeColor")
         redButton.tag = 1
-        let orangeButton = UIBarButtonItem(image: UIImage(named: "orange")?.resizeImage(size: CGSize(width: 26, height: 26)).withRenderingMode(.alwaysOriginal), style: UIBarButtonItem.Style.plain, target: nil, action: #selector(changeColor))
+        orangeButton = setBarButton(colorName: "orange", actionName: "changeColor")
         orangeButton.tag = 2
-        let yellowButton = UIBarButtonItem(image: UIImage(named: "yellow")?.resizeImage(size: CGSize(width: 26, height: 26)).withRenderingMode(.alwaysOriginal), style: UIBarButtonItem.Style.plain, target: nil, action: #selector(changeColor))
+        yellowButton = setBarButton(colorName: "yellow", actionName: "changeColor")
         yellowButton.tag = 3
-        let greenButton = UIBarButtonItem(image: UIImage(named: "green")?.resizeImage(size: CGSize(width: 26, height: 26)).withRenderingMode(.alwaysOriginal), style: UIBarButtonItem.Style.plain, target: nil, action: #selector(changeColor))
+        greenButton = setBarButton(colorName: "green", actionName: "changeColor")
         greenButton.tag = 4
-        let blueButton = UIBarButtonItem(image: UIImage(named: "blue")?.resizeImage(size: CGSize(width: 26, height: 26)).withRenderingMode(.alwaysOriginal), style: UIBarButtonItem.Style.plain, target: nil, action: #selector(changeColor))
+        blueButton = setBarButton(colorName: "blue", actionName: "changeColor")
         blueButton.tag = 5
-        let navyButton = UIBarButtonItem(image: UIImage(named: "navy")?.resizeImage(size: CGSize(width: 26, height: 26)).withRenderingMode(.alwaysOriginal), style: UIBarButtonItem.Style.plain, target: nil, action: #selector(changeColor))
+        navyButton = setBarButton(colorName: "navy", actionName: "changeColor")
         navyButton.tag = 6
-        let purpleButton = UIBarButtonItem(image: UIImage(named: "purple")?.resizeImage(size: CGSize(width: 26, height: 26)).withRenderingMode(.alwaysOriginal), style: UIBarButtonItem.Style.plain, target: nil, action: #selector(changeColor))
+        purpleButton = setBarButton(colorName: "purple", actionName: "changeColor")
         purpleButton.tag = 7
-        let noneButton = UIBarButtonItem(image: UIImage(named: "none")?.resizeImage(size: CGSize(width: 26, height: 26)).withRenderingMode(.alwaysOriginal), style: UIBarButtonItem.Style.plain, target: nil, action: #selector(changeColor))
+        noneButton = setBarButton(colorName: "none", actionName: "changeColor")
         noneButton.tag = 0
         
-        toolbar.setItems([redButton, orangeButton, yellowButton, greenButton, blueButton, navyButton, purpleButton, noneButton], animated: false)
+        selectedButton = setBarButton(colorName: "none", actionName: "")
+        flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        
+        toolbar.setItems([redButton, orangeButton, yellowButton, greenButton, blueButton, navyButton, purpleButton, noneButton, flexSpace, selectedButton], animated: false)
         
         taskField.inputAccessoryView = toolbar
 
@@ -165,7 +227,12 @@ extension TableSceneController :UITableViewDelegate, UITableViewDataSource {
         cell.taskDateLabel?.text = taskDates[(indexPath as NSIndexPath).row]
         cell.taskLabel?.text = taskItems[(indexPath as NSIndexPath).row]
         cell.taskColor?.text = ""
-        
+        if taskChecks[(indexPath as NSIndexPath).row] == "0"{
+            cell.taskCheck?.image = UIImage(named: "white")
+        }
+        else{
+            cell.taskCheck?.image = UIImage(named: "check")
+        }
         let tColor = taskColor[(indexPath as NSIndexPath).row]
         
         switch tColor{
@@ -192,7 +259,56 @@ extension TableSceneController :UITableViewDelegate, UITableViewDataSource {
 
         return cell
     }
-    
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        print("diselect")
+    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: false)
+        
+        if selectedIndex == indexPath.row{
+            print("double click")
+            if taskChecks[indexPath.row] == "1"{
+                taskChecks[indexPath.row] = "0"
+            }
+            else{
+                taskChecks[indexPath.row] = "1"
+            }
+            selectedIndex = -1
+            tableView.reloadData()
+        }
+        else{
+            selectedIndex = indexPath.row
+        }
+        
+    }
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        
+        let delete = UIContextualAction(style: .destructive, title: "Delete") {
+            action, view, completion in completion(true)
+            taskItems.remove(at :indexPath.row)
+            taskDates.remove(at: indexPath.row)
+            taskColor.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+            
+        }
+       
+        // delete.image = #imageLiteral(resourceName: "trash")
+            return UISwipeActionsConfiguration(actions: [delete])
+        
+    }
+/*
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            taskItems.remove(at :indexPath.row)
+            taskDates.remove(at: indexPath.row)
+            taskColor.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+                
+            } else if editingStyle == .insert {
+                // Not used in our example, but if you were adding a new row, this is where you would do it.
+            }
+        }
+ */
 }
 
 extension UIImage {

@@ -13,5 +13,6 @@ class TaskCell : UITableViewCell{
     @IBOutlet var taskDateLabel: UILabel!
     @IBOutlet var taskLabel: UILabel!
     @IBOutlet var taskColor: UILabel!
+    @IBOutlet var taskCheck: UIImageView!
     
 }
